@@ -42,21 +42,9 @@ def _encrypted_shift(character, character_case, shift_factor):
     # Get index of character in an alphabetical list.
     input_character_index = character_case.index(character)
 
-    # In range of alphabet length.
-    if (input_character_index + shift_factor) < (len(character_case) - 1):
-        encrypted_character = character_case[input_character_index + shift_factor]
-
-    # Out of range of alphabet length.
-    # To work around that the list index() method not returning negative indexes.
-    # len() function returns actual length and not last index of the list.
-    elif (input_character_index + shift_factor) >= (len(character_case) - 1):
-        # Subtract highest index from the sum of the index of the character to
-        #   decrypt and the shift factor to move pointer to beginning of the list.
-        #   Subtract 1 to accommodate for the first index being 0.
-        encrypted_character_index = (input_character_index + shift_factor) - (
-            len(character_case) - 1
-        )
-        encrypted_character = character_case[encrypted_character_index - 1]
+    encrypted_character = character_case[
+        (input_character_index + shift_factor) % len(character_case)
+    ]
 
     return encrypted_character
 
@@ -101,20 +89,8 @@ def _decrypt_shift(character, character_case, shift_factor):
     # Get index of character in an alphabetical list.
     input_character_index = character_case.index(character)
 
-    # In range of alphabet length.
-    if (input_character_index + shift_factor) < (len(character_case) - 1):
-        decrypted_character = character_case[input_character_index + shift_factor]
-
-    # Out of range of alphabet length.
-    # To work around that the list index() method not returning negative indexes.
-    # len() function returns actual length and not last index of the list.
-    elif (input_character_index + shift_factor) >= (len(character_case) - 1):
-        # Subtract highest index from the sum of the index of the character to
-        #   decrypt and the shift factor to move pointer to beginning of the list.
-        #   Subtract 1 to accommodate for the first index being 0.
-        decrypted_character_index = (input_character_index + shift_factor) - (
-            len(character_case) - 1
-        )
-        decrypted_character = character_case[decrypted_character_index - 1]
+    decrypted_character = character_case[
+        (input_character_index + shift_factor) % len(character_case)
+    ]
 
     return decrypted_character

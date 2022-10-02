@@ -219,8 +219,8 @@ class CaesarCipherCompleteTestCase(unittest.TestCase):
         self.assertNotEqual(encrypted_message, INPUT)
         self.assertEqual(decrypted_message, INPUT)
 
-    def test_negative_shift_26(self):
-        SHIFT_FACTOR = -26
+    def test_negative_shift_27(self):
+        SHIFT_FACTOR = -27
         INPUT = "The quick brown fox jumps over the lazy dog!"
 
         # encrypt the message, then decrypt the message.
@@ -230,8 +230,74 @@ class CaesarCipherCompleteTestCase(unittest.TestCase):
         self.assertNotEqual(encrypted_message, INPUT)
         self.assertEqual(decrypted_message, INPUT)
 
-    def test_shift_26(self):
-        SHIFT_FACTOR = 26
+    def test_shift_27(self):
+        SHIFT_FACTOR = 27
+        INPUT = "The quick brown fox jumps over the lazy dog!"
+
+        # encrypt the message, then decrypt the message.
+        encrypted_message = encrypt(INPUT, SHIFT_FACTOR)
+        decrypted_message = decrypt(encrypted_message, SHIFT_FACTOR)
+
+        self.assertNotEqual(encrypted_message, INPUT)
+        self.assertEqual(decrypted_message, INPUT)
+
+    def test_negative_shift_55(self):
+        SHIFT_FACTOR = -55
+        INPUT = "The quick brown fox jumps over the lazy dog!"
+
+        # encrypt the message, then decrypt the message.
+        encrypted_message = encrypt(INPUT, SHIFT_FACTOR)
+        decrypted_message = decrypt(encrypted_message, SHIFT_FACTOR)
+
+        self.assertNotEqual(encrypted_message, INPUT)
+        self.assertEqual(decrypted_message, INPUT)
+
+    def test_shift_55(self):
+        SHIFT_FACTOR = 55
+        INPUT = "The quick brown fox jumps over the lazy dog!"
+
+        # encrypt the message, then decrypt the message.
+        encrypted_message = encrypt(INPUT, SHIFT_FACTOR)
+        decrypted_message = decrypt(encrypted_message, SHIFT_FACTOR)
+
+        self.assertNotEqual(encrypted_message, INPUT)
+        self.assertEqual(decrypted_message, INPUT)
+
+    def test_negative_shift_110(self):
+        SHIFT_FACTOR = -110
+        INPUT = "The quick brown fox jumps over the lazy dog!"
+
+        # encrypt the message, then decrypt the message.
+        encrypted_message = encrypt(INPUT, SHIFT_FACTOR)
+        decrypted_message = decrypt(encrypted_message, SHIFT_FACTOR)
+
+        self.assertNotEqual(encrypted_message, INPUT)
+        self.assertEqual(decrypted_message, INPUT)
+
+    def test_shift_110(self):
+        SHIFT_FACTOR = 110
+        INPUT = "The quick brown fox jumps over the lazy dog!"
+
+        # encrypt the message, then decrypt the message.
+        encrypted_message = encrypt(INPUT, SHIFT_FACTOR)
+        decrypted_message = decrypt(encrypted_message, SHIFT_FACTOR)
+
+        self.assertNotEqual(encrypted_message, INPUT)
+        self.assertEqual(decrypted_message, INPUT)
+
+    def test_negative_shift_1100(self):
+        SHIFT_FACTOR = -1100
+        INPUT = "The quick brown fox jumps over the lazy dog!"
+
+        # encrypt the message, then decrypt the message.
+        encrypted_message = encrypt(INPUT, SHIFT_FACTOR)
+        decrypted_message = decrypt(encrypted_message, SHIFT_FACTOR)
+
+        self.assertNotEqual(encrypted_message, INPUT)
+        self.assertEqual(decrypted_message, INPUT)
+
+    def test_shift_1100(self):
+        SHIFT_FACTOR = 1100
         INPUT = "The quick brown fox jumps over the lazy dog!"
 
         # encrypt the message, then decrypt the message.
