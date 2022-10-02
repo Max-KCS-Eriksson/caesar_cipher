@@ -4,7 +4,9 @@ from datetime import datetime
 import caesar_cipher
 
 # Shift factor settings.
-#   NOTE: Working range from -25 to 25.
+# NOTE: Don't use shift factor 26 as it will output the same as shift factor 0.
+#   No real need to use shift factor above 25 as the same all possible outputs
+#   are covered within the range of 1 to 25 or -1 to -25.
 SHIFT_FACTOR = 25
 
 parser = argparse.ArgumentParser()

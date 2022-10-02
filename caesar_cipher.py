@@ -22,12 +22,12 @@ def encrypt(text, shift_factor):
         # Encrypted character to the correct case.
         elif character == character.lower():
             character_case = LOWERCASE_ALPHABET
-            encrypted_character = _encrypted_shift(
+            encrypted_character = _shift_character(
                 character, character_case, shift_factor
             )
         elif character == character.upper():
             character_case = UPPERCASE_ALPHABET
-            encrypted_character = _encrypted_shift(
+            encrypted_character = _shift_character(
                 character, character_case, shift_factor
             )
 
@@ -36,17 +36,6 @@ def encrypt(text, shift_factor):
     # Make string of characters in list.
     encrypted_text = "".join(encrypted_text)
     return encrypted_text
-
-
-def _encrypted_shift(character, character_case, shift_factor):
-    # Get index of character in an alphabetical list.
-    input_character_index = character_case.index(character)
-
-    encrypted_character = character_case[
-        (input_character_index + shift_factor) % len(character_case)
-    ]
-
-    return encrypted_character
 
 
 def decrypt(text, shift_factor):
@@ -58,6 +47,9 @@ def decrypt(text, shift_factor):
     text = list(text)
     decrypted_text = []
 
+    # Reverse shift factor.
+    shift_factor *= -1
+
     for character in text:
         # Leave non alphabetical characters as they are.
         if character not in COMPLETE_ALPHABET:
@@ -66,12 +58,12 @@ def decrypt(text, shift_factor):
         # decrypt character to the correct case.
         elif character == character.lower():
             character_case = LOWERCASE_ALPHABET
-            decrypted_character = _decrypt_shift(
+            decrypted_character = _shift_character(
                 character, character_case, shift_factor
             )
         elif character == character.upper():
             character_case = UPPERCASE_ALPHABET
-            decrypted_character = _decrypt_shift(
+            decrypted_character = _shift_character(
                 character, character_case, shift_factor
             )
 
@@ -82,10 +74,7 @@ def decrypt(text, shift_factor):
     return decrypted_text
 
 
-def _decrypt_shift(character, character_case, shift_factor):
-    # Reverse shift factor.
-    shift_factor *= -1
-
+def _shift_character(character, character_case, shift_factor):
     # Get index of character in an alphabetical list.
     input_character_index = character_case.index(character)
 
