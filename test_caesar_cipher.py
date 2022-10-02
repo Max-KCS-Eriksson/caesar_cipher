@@ -171,5 +171,52 @@ class DecodeTestCase(unittest.TestCase):
         self.assertEqual(decoded_message, EXPECTED_OUTPUT)
 
 
+class CaesarCipherCompleteTestCase(unittest.TestCase):
+    """
+    Tests for 'caesar_cipher.py' to see that both encryption and decryption works,
+    given an arbitrary integer as shift factor.
+    """
+
+    def test_negative_shift_10(self):
+        SHIFT_FACTOR = -10
+        INPUT = "The quick brown fox jumps over the lazy dog!"
+
+        # Encode the message, then decode the message.
+        encoded_message = encode(INPUT, SHIFT_FACTOR)
+        decoded_message = decode(encoded_message, SHIFT_FACTOR)
+
+        self.assertEqual(decoded_message, INPUT)
+
+    def test_shift_10(self):
+        SHIFT_FACTOR = 10
+        INPUT = "The quick brown fox jumps over the lazy dog!"
+
+        # Encode the message, then decode the message.
+        encoded_message = encode(INPUT, SHIFT_FACTOR)
+        decoded_message = decode(encoded_message, SHIFT_FACTOR)
+
+        self.assertEqual(decoded_message, INPUT)
+
+    def test_negative_shift_26(self):
+        SHIFT_FACTOR = -26
+        INPUT = "The quick brown fox jumps over the lazy dog!"
+
+        # Encode the message, then decode the message.
+        encoded_message = encode(INPUT, SHIFT_FACTOR)
+        decoded_message = decode(encoded_message, SHIFT_FACTOR)
+
+        self.assertEqual(decoded_message, INPUT)
+
+    def test_shift_26(self):
+        SHIFT_FACTOR = 26
+        INPUT = "The quick brown fox jumps over the lazy dog!"
+
+        # Encode the message, then decode the message.
+        encoded_message = encode(INPUT, SHIFT_FACTOR)
+        decoded_message = decode(encoded_message, SHIFT_FACTOR)
+
+        self.assertEqual(decoded_message, INPUT)
+
+
 if __name__ == "__main__":
     unittest.main()

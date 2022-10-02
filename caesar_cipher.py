@@ -44,9 +44,15 @@ def _encode_shift(character, character_case, shift_factor):
 
     # Out of range of alphabet length.
     # To work around that the list index() method not returning negative indexes.
+    # len() function returns actual length and not last index of the list.
     elif (input_character_index + shift_factor) >= (len(character_case) - 1):
-        # len() function returns actual length and nor last index of the list.
-        encoded_character = character_case[shift_factor - 1]
+        # Subtract highest index from the sum of the index of the character to
+        #   decode and the shift factor to move pointer to beginning of the list.
+        #   Subtract 1 to accommodate for the first index being 0.
+        encoded_character_index = (input_character_index + shift_factor) - (
+            len(character_case) - 1
+        )
+        encoded_character = character_case[encoded_character_index - 1]
 
     return encoded_character
 
@@ -93,23 +99,18 @@ def _decode_shift(character, character_case, shift_factor):
 
     # Out of range of alphabet length.
     # To work around that the list index() method not returning negative indexes.
+    # len() function returns actual length and not last index of the list.
     elif (input_character_index + shift_factor) >= (len(character_case) - 1):
-        # len() function returns actual length and nor last index of the list.
-        decoded_character = character_case[shift_factor - 1]
+        # Subtract highest index from the sum of the index of the character to
+        #   decode and the shift factor to move pointer to beginning of the list.
+        #   Subtract 1 to accommodate for the first index being 0.
+        decoded_character_index = (input_character_index + shift_factor) - (
+            len(character_case) - 1
+        )
+        decoded_character = character_case[decoded_character_index - 1]
 
     return decoded_character
 
 
 if __name__ == "__main__":
-    SHIFT_FACTOR = -1
-    TEXT = "The quick brown fox jumps over the lazy dog!"
-    print("Original text:")
-    print(TEXT)
-
-    print("Encoded message:")
-    encoded_message = encode(TEXT, SHIFT_FACTOR)
-    print(encoded_message)
-
-    print("Decoded message:")
-    decoded_message = decode(encoded_message, SHIFT_FACTOR)
-    print(decoded_message)
+    pass
