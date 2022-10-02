@@ -5,88 +5,96 @@ LOWERCASE_ALPHABET = list(string.ascii_lowercase)
 COMPLETE_ALPHABET = list(string.ascii_letters)
 
 
-def encode(text, shift_factor):
+def encrypt(text, shift_factor):
     """
-    decode a text using the Caesar cipher.
-    Takes a string and decode it with the given shift factor.
-    Only alphabetical characters of the english alphabet will be decoded.
+    Encrypt a text using the Caesar cipher.
+    Takes a string and decrypt it with the given shift factor.
+    Only alphabetical characters of the english alphabet will be decrypted.
     """
     text = list(text)
-    encoded_text = []
+    encrypted_text = []
 
     for character in text:
         # Leave non alphabetical characters as they are.
         if character not in COMPLETE_ALPHABET:
-            encoded_character = character
+            encrypted_character = character
 
-        # Encode character to the correct case.
+        # Encrypted character to the correct case.
         elif character == character.lower():
             character_case = LOWERCASE_ALPHABET
-            encoded_character = _encode_shift(character, character_case, shift_factor)
+            encrypted_character = _encrypted_shift(
+                character, character_case, shift_factor
+            )
         elif character == character.upper():
             character_case = UPPERCASE_ALPHABET
-            encoded_character = _encode_shift(character, character_case, shift_factor)
+            encrypted_character = _encrypted_shift(
+                character, character_case, shift_factor
+            )
 
-        encoded_text.append(encoded_character)
+        encrypted_text.append(encrypted_character)
 
     # Make string of characters in list.
-    encoded_text = "".join(encoded_text)
-    return encoded_text
+    encrypted_text = "".join(encrypted_text)
+    return encrypted_text
 
 
-def _encode_shift(character, character_case, shift_factor):
+def _encrypted_shift(character, character_case, shift_factor):
     # Get index of character in an alphabetical list.
     input_character_index = character_case.index(character)
 
     # In range of alphabet length.
     if (input_character_index + shift_factor) < (len(character_case) - 1):
-        encoded_character = character_case[input_character_index + shift_factor]
+        encrypted_character = character_case[input_character_index + shift_factor]
 
     # Out of range of alphabet length.
     # To work around that the list index() method not returning negative indexes.
     # len() function returns actual length and not last index of the list.
     elif (input_character_index + shift_factor) >= (len(character_case) - 1):
         # Subtract highest index from the sum of the index of the character to
-        #   decode and the shift factor to move pointer to beginning of the list.
+        #   decrypt and the shift factor to move pointer to beginning of the list.
         #   Subtract 1 to accommodate for the first index being 0.
-        encoded_character_index = (input_character_index + shift_factor) - (
+        encrypted_character_index = (input_character_index + shift_factor) - (
             len(character_case) - 1
         )
-        encoded_character = character_case[encoded_character_index - 1]
+        encrypted_character = character_case[encrypted_character_index - 1]
 
-    return encoded_character
+    return encrypted_character
 
 
-def decode(text, shift_factor):
+def decrypt(text, shift_factor):
     """
-    Decode a text using the Caesar cipher.
-    Takes a string and decodes it by reverting given shift factor.
-    Only alphabetical characters of the english alphabet will be decoded.
+    Decrypt a text using the Caesar cipher.
+    Takes a string and decrypts it by reverting given shift factor.
+    Only alphabetical characters of the english alphabet will be decrypted.
     """
     text = list(text)
-    decoded_text = []
+    decrypted_text = []
 
     for character in text:
         # Leave non alphabetical characters as they are.
         if character not in COMPLETE_ALPHABET:
-            decoded_character = character
+            decrypted_character = character
 
-        # Decode character to the correct case.
+        # decrypt character to the correct case.
         elif character == character.lower():
             character_case = LOWERCASE_ALPHABET
-            decoded_character = _decode_shift(character, character_case, shift_factor)
+            decrypted_character = _decrypt_shift(
+                character, character_case, shift_factor
+            )
         elif character == character.upper():
             character_case = UPPERCASE_ALPHABET
-            decoded_character = _decode_shift(character, character_case, shift_factor)
+            decrypted_character = _decrypt_shift(
+                character, character_case, shift_factor
+            )
 
-        decoded_text.append(decoded_character)
+        decrypted_text.append(decrypted_character)
 
     # Make string of characters in list.
-    decoded_text = "".join(decoded_text)
-    return decoded_text
+    decrypted_text = "".join(decrypted_text)
+    return decrypted_text
 
 
-def _decode_shift(character, character_case, shift_factor):
+def _decrypt_shift(character, character_case, shift_factor):
     # Reverse shift factor.
     shift_factor *= -1
 
@@ -95,22 +103,18 @@ def _decode_shift(character, character_case, shift_factor):
 
     # In range of alphabet length.
     if (input_character_index + shift_factor) < (len(character_case) - 1):
-        decoded_character = character_case[input_character_index + shift_factor]
+        decrypted_character = character_case[input_character_index + shift_factor]
 
     # Out of range of alphabet length.
     # To work around that the list index() method not returning negative indexes.
     # len() function returns actual length and not last index of the list.
     elif (input_character_index + shift_factor) >= (len(character_case) - 1):
         # Subtract highest index from the sum of the index of the character to
-        #   decode and the shift factor to move pointer to beginning of the list.
+        #   decrypt and the shift factor to move pointer to beginning of the list.
         #   Subtract 1 to accommodate for the first index being 0.
-        decoded_character_index = (input_character_index + shift_factor) - (
+        decrypted_character_index = (input_character_index + shift_factor) - (
             len(character_case) - 1
         )
-        decoded_character = character_case[decoded_character_index - 1]
+        decrypted_character = character_case[decrypted_character_index - 1]
 
-    return decoded_character
-
-
-if __name__ == "__main__":
-    pass
+    return decrypted_character
