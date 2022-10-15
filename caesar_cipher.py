@@ -1,3 +1,11 @@
+"""
+Usage:
+Don't use shift factor -26 or 26 as it will output the same as shift factor 0, e.g. 
+the output will be the same as the input.
+No real need to use shift factor above 25 as the same all possible outputs are covered 
+within the range of 1 to 25 or -1 to -25.
+"""
+
 import string
 
 UPPERCASE_ALPHABET = list(string.ascii_uppercase)
